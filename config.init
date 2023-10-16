@@ -1,0 +1,9 @@
+[twitterAPI]
+
+api_key = YOUR_API_KEY
+api_key_secret = YOUR_API_KEY_SECRET
+
+access_token = YOUR_API_TOKEN
+access_token_secret = YOUR_API_TOKEN_SECRET
+
+bearer_token = YOUR_BEARER_TOKEN(If it contains %, add another % after to skip it)
