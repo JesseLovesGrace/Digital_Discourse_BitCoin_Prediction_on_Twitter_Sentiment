@@ -3,6 +3,8 @@
 # with the files' names in the fromat of "date + twitteruser + keyword" 
 # so that yout don't have to rename the file again after the scrape
 
+# Please subscribe to Twitter API V2 Basic level before using this!!!!!!!
+
 import requests
 import json
 import csv
