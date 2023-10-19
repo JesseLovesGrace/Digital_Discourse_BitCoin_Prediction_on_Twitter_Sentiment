@@ -18,7 +18,7 @@ config.read('config.ini')
 bearer_token = config['twitterAPI']['bearer_token']
 
 # Define the Twitter username of the user you want to search tweets from
-username = "bitcoinlfgo"
+username = "brian_armstrong"
 
 # Define the search query keywords
 keyword = "Bitcoin"
@@ -48,7 +48,7 @@ if response.status_code == 200:
     data = response.json()
 
     if "data" in data:
-        # Define a list of tweet data to be written to a CSV file
+        # Define a list of tweet data to be written to CSV and JSON
         tweet_data = []
 
         for tweet in data["data"]:
@@ -59,8 +59,18 @@ if response.status_code == 200:
             likes = tweet["public_metrics"]["like_count"]
             replies = tweet["public_metrics"]["reply_count"]
 
+            # Convert the datetime object to a string
+            timestamp_str = timestamp.strftime("%Y-%m-%dT%H:%M:%S.%fZ")
+
             # Append the tweet data to the list
-            tweet_data.append([timestamp, username, tweet_content, retweets, likes, replies])
+            tweet_data.append({
+                "Timestamp": timestamp_str,
+                "Username": username,
+                "Tweet Content": tweet_content,
+                "Retweets": retweets,
+                "Likes": likes,
+                "Replies": replies
+            })
 
         # Define the CSV filename
         date_str = datetime.now().strftime("%Y-%m-%d")
@@ -72,9 +82,20 @@ if response.status_code == 200:
             # Write the header row
             writer.writerow(["Timestamp", "Username", "Tweet Content", "Retweets", "Likes", "Replies"])
             # Write the tweet data
-            writer.writerows(tweet_data)
+            for tweet in tweet_data:
+                writer.writerow([tweet["Timestamp"], tweet["Username"], tweet["Tweet Content"],
+                                 tweet["Retweets"], tweet["Likes"], tweet["Replies"]])
 
         print(f"Collected {len(tweet_data)} tweets and saved to {csv_filename}")
+
+        # Define the JSON filename
+        json_filename = f"{date_str}_{username}_{keyword}.json"
+
+        # Write the tweet data to a JSON file
+        with open(json_filename, 'w', encoding='utf-8') as json_file:
+            json.dump(tweet_data, json_file, ensure_ascii=False, indent=4)
+
+        print(f"Saved the tweets to {json_filename}")
     else:
         print("No tweet data found for the given search query.")
 else:
