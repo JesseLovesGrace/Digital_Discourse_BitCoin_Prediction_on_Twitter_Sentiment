@@ -18,22 +18,23 @@ config.read('config.ini')
 bearer_token = config['twitterAPI']['bearer_token']
 
 # Define the Twitter username of the user you want to search tweets from
-username = "BTC_Archive"
+username = "bitcoinlfgo"
 
 # Define the search query keywords
-keywords = "Bitcoin"
+keyword = "Bitcoin"
 
-# Define the search query to find tweets about the specified keywords from the specified user
-search_query = f"from:{username} {keywords}"
+# Define the search query to find tweets about "SpaceX" from the specified user
+search_query = f"from:{username} {keyword}"
 
 # Set the Twitter API v2 endpoint for recent tweet search
 url = "https://api.twitter.com/2/tweets/search/recent"
 
-# Define query parameters to include additional fields
+# Define query parameters to include additional fields, including full tweet content
 params = {
     "query": search_query,
     "max_results": 100,  # Specify the number of results per response
-    "tweet.fields": "created_at,text,public_metrics,referenced_tweets",  # Include additional fields
+    "tweet.fields": "created_at,public_metrics,referenced_tweets",  # Include additional fields for full tweet content
+    "user.fields": "username",  # Include the username field to retrieve the username
 }
 
 # Set the request headers with the Bearer Token
@@ -43,56 +44,38 @@ headers = {
 
 # Send a GET request to the endpoint
 response = requests.get(url, params=params, headers=headers)
-
 if response.status_code == 200:
     data = response.json()
 
-    # Define a list of tweet data to be written to a CSV file
-    tweet_data_csv = []
+    if "data" in data:
+        # Define a list of tweet data to be written to a CSV file
+        tweet_data = []
 
-    # Define a list of tweet data to be written to a JSON file
-    tweet_data_json = []
+        for tweet in data["data"]:
+            timestamp = datetime.strptime(tweet["created_at"], "%Y-%m-%dT%H:%M:%S.%fZ")
+            username = username
+            tweet_content = tweet["text"]
+            retweets = tweet["public_metrics"]["retweet_count"]
+            likes = tweet["public_metrics"]["like_count"]
+            replies = tweet["public_metrics"]["reply_count"]
 
-    for tweet in data["data"]:
-        timestamp = datetime.strptime(tweet["created_at"], "%Y-%m-%dT%H:%M:%S.%fZ")
-        username = username
-        tweet_content = tweet["text"]
-        retweets = tweet["public_metrics"]["retweet_count"]
-        likes = tweet["public_metrics"]["like_count"]
-        replies = tweet["public_metrics"]["reply_count"]
+            # Append the tweet data to the list
+            tweet_data.append([timestamp, username, tweet_content, retweets, likes, replies])
 
-        # Append the tweet data to the CSV and JSON lists
-        tweet_data_csv.append([timestamp, username, tweet_content, retweets, likes, replies])
-        tweet_data_json.append({
-            "Timestamp": timestamp.strftime("%Y-%m-%d %H:%M:%S"),
-            "Username": username,
-            "Tweet Content": tweet_content,
-            "Retweets": retweets,
-            "Likes": likes,
-            "Replies": replies,
-        })
+        # Define the CSV filename
+        date_str = datetime.now().strftime("%Y-%m-%d")
+        csv_filename = f"{date_str}_{username}_{keyword}.csv"
 
-    # Get the current date
-    current_date = datetime.now().strftime("%Y%m%d")
+        # Write the tweet data to a CSV file
+        with open(csv_filename, mode='w', newline='', encoding='utf-8') as csv_file:
+            writer = csv.writer(csv_file)
+            # Write the header row
+            writer.writerow(["Timestamp", "Username", "Tweet Content", "Retweets", "Likes", "Replies"])
+            # Write the tweet data
+            writer.writerows(tweet_data)
 
-    # Define the CSV filename with date, username, and keywords
-    csv_filename = f"{current_date}_{username}_{keywords}.csv"
-    # Define the JSON filename with date, username, and keywords
-    json_filename = f"{current_date}_{username}_{keywords}.json"
-
-    # Write the tweet data to a CSV file
-    with open(csv_filename, mode='w', newline='', encoding='utf-8') as csv_file:
-        writer = csv.writer(csv_file)
-        # Write the header row
-        writer.writerow(["Timestamp", "Username", "Tweet Content", "Retweets", "Likes", "Replies"])
-        # Write the tweet data
-        writer.writerows(tweet_data_csv)
-
-    # Write the tweet data to a JSON file
-    with open(json_filename, 'w', encoding='utf-8') as json_file:
-        json.dump(tweet_data_json, json_file, ensure_ascii=False, indent=4)
-
-    print(f"Collected {len(tweet_data_csv)} tweets and saved to {csv_filename} and {json_filename}")
+        print(f"Collected {len(tweet_data)} tweets and saved to {csv_filename}")
+    else:
+        print("No tweet data found for the given search query.")
 else:
     print(f"Request returned an error: {response.status_code} {response.text}")
-
