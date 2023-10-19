@@ -6,6 +6,15 @@ import csv
 from datetime import datetime
 import configparser
 
+# Define the Twitter username of the user you want to search tweets from
+user_name = "krakenfx"
+# Define the search query keywords
+key_word = "Bitcoin"
+# Replace with your desired directory path for CSV files
+csv_directory = "C:\\Users\\jesse\\Desktop\\DDHW\\20231024\\CSV"
+# Replace with your desired directory path for JSON files
+json_directory = "C:\\Users\\jesse\\Desktop\\DDHW\\20231024\\JSON"
+
 def save_files(tweet_data, csv_directory, json_directory):
     # Define the CSV filename
     date_str = datetime.now().strftime("%Y-%m-%d")
@@ -38,13 +47,10 @@ config.read('config.ini')
 # Replace with your Twitter API v2 Bearer Token
 bearer_token = config['twitterAPI']['bearer_token']
 
-# Define the Twitter username of the user you want to search tweets from
-username = "krakenfx"
+username = user_name
+keyword = key_word
 
-# Define the search query keywords
-keyword = "Bitcoin"
-
-# Define the search query to find tweets about "SpaceX" from the specified user
+# Define the search query to find tweets about "key_word" from the specified user
 search_query = f"from:{username} {keyword}"
 
 # Set the Twitter API v2 endpoint for recent tweet search
@@ -100,11 +106,11 @@ if response and response.status_code == 200:
             })
 
         # Define the directory to save CSV and JSON files
-        csv_directory = "C:\\Users\\jesse\\Desktop\\DDHW\\20231024\\CSV"  # Replace with your desired directory path for CSV files
-        json_directory = "C:\\Users\\jesse\\Desktop\\DDHW\\20231024\\JSON"  # Replace with your desired directory path for JSON files
+        csv_dir = csv_directory
+        json_dir = json_directory
 
         # Call the save_files function to save the CSV and JSON files
-        save_files(tweet_data, csv_directory, json_directory)
+        save_files(tweet_data, csv_dir, json_dir)
     else:
         print("No tweet data found for the given search query.")
 else:
