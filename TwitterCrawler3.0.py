@@ -1,4 +1,3 @@
-
 import os
 import requests
 import json
@@ -11,9 +10,9 @@ user_name = "krakenfx"
 # Define the search query keywords
 key_word = "Bitcoin"
 # Replace with your desired directory path for CSV files
-csv_directory = "C:\\Users\\jesse\\Desktop\\DDHW\\20231024\\CSV"
+csv_directory = "C:\\Users\\jesse\\Desktop\\DDHW\\CSV"
 # Replace with your desired directory path for JSON files
-json_directory = "C:\\Users\\jesse\\Desktop\\DDHW\\20231024\\JSON"
+json_directory = "C:\\Users\\jesse\\Desktop\\DDHW\\JSON"
 
 def save_files(tweet_data, csv_directory, json_directory):
     # Define the CSV filename
@@ -93,7 +92,7 @@ if response and response.status_code == 200:
             replies = tweet["public_metrics"]["reply_count"]
 
             # Convert the datetime object to a string
-            timestamp_str = timestamp.strftime("%Y-%m-%dT%H:%M:%S.%fZ")
+            timestamp_str = timestamp.strftime("%Y-%m-%d")
 
             # Append the tweet data to the list
             tweet_data.append({
