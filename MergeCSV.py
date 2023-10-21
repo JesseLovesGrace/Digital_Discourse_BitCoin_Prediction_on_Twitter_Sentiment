@@ -4,7 +4,7 @@ import pandas as pd
 from datetime import datetime
 
 # Set the directory where your CSV files are located
-directory = "C:\\Users\\jesse\\Desktop\\DDHW\\CSV_and_JSON\\Bitcoin"  # Replace with your directory path
+directory = "C:\\Users\\jesse\\Desktop\\DDHW\\CSV"  # Replace with your directory path
 
 # List all CSV files in the directory
 csv_files = glob.glob(os.path.join(directory, "*.csv"))
@@ -16,6 +16,8 @@ dataframes = []
 for file in csv_files:
     try:
         df = pd.read_csv(file)
+        # Extract only the date part from the 'Timestamp' column
+        df['Timestamp'] = pd.to_datetime(df['Timestamp']).dt.date
         dataframes.append(df)
     except Exception as e:
         print(f"Error while reading {file}: {str(e)}")
@@ -32,7 +34,7 @@ else:
 
     # Generate the output filename with the current date
     current_date = datetime.now().strftime("%Y%m%d")
-    output_csv = f"C:\\Users\\jesse\\Desktop\\DDHW\\Processing\\{current_date}_merged_data.csv"
+    output_csv = f"C:\\Users\\jesse\\Desktop\\DDHW\\Testing\\{current_date}_merged_data.csv"
 
     # Save the sorted DataFrame to the new CSV file
     sorted_df.to_csv(output_csv, index=False)
