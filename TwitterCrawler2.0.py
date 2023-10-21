@@ -18,7 +18,7 @@ config.read('config.ini')
 bearer_token = config['twitterAPI']['bearer_token']
 
 # Define the Twitter username of the user you want to search tweets from
-username = "brian_armstrong"
+username = "krakenfx"
 
 # Define the search query keywords
 keyword = "Bitcoin"
