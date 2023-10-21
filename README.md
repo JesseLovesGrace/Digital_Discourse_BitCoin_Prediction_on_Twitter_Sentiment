@@ -1,5 +1,11 @@
 # MonkeyCatSunny
-This is a TweetCrawler for my DD course Homework
+This is all the files for my DD course Homework
+
+##########################################################
+Most of the code is written with the help of ChatGPT 3.5.
+
+If I can do it, you can do it!!!
+##########################################################
 
 if you want to use this crawler, you need to:
 
@@ -20,3 +26,10 @@ access_token_secret = YOUR_OWN_ACCESS_TOKEN_SECRET
 bearer_token = YOUR_OWN_BEARER_TOKEN
 
 If you have any further questions, let me know
+
+For doing RoBERTa analysis, see the file RoBERTaAnalysis.py
+
+For Merging files, you need MergeCSV.py
+
+For running regressions, please install Anaconda 3(recommended), or install Jupyter and Conda on your editor or IDE. 
+For code, see Data_Processing_and_Regression.ipynb
