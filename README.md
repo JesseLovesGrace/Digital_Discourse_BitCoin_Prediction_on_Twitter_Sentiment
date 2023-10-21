@@ -1,13 +1,12 @@
 # MonkeyCatSunny
 This is all the files for my DD course Homework
 
-##########################################################
-
+#######
 Most of the code is written with the help of ChatGPT 3.5.
 
 If I can do it, you can do it!!!
 
-##########################################################
+#######
 
 if you want to use this crawler, you need to:
 
