@@ -10,7 +10,9 @@ tokenizer = AutoTokenizer.from_pretrained(roberta)
 labels = ['Negative', 'Neutral', 'Positive']
 
 # Load the CSV file
-target_file = "C:\\Users\\jesse\\Desktop\\DDHW\\CSV_and_JSON\\Bitcoin\\20231017_binance_Bitcoin.csv" # Replace with the path to your CSV file
+target_file = "C:\\Users\\jesse\\Desktop\\DDHW\\Testing\\01-Tweet_Data\\20231024_merged_data_Bitcoin.csv"
+# Replace with the path to your CSV file
+# and change "\" into "\\"!!!!!!
 df = pd.read_csv(target_file)
 
 # Define a function to perform sentiment analysis
@@ -41,3 +43,5 @@ df['scores'] = df['Tweet Content'].apply(perform_sentiment_analysis)
 
 # Save the DataFrame back to the CSV file
 df.to_csv(target_file, index=False)
+
+print("RoBERTa Analysis Complete!")
