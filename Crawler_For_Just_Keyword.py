@@ -13,7 +13,7 @@ csv_directory = "C:\\Users\\jesse\\Desktop\\DDHW2\\CSV"
 json_directory = "C:\\Users\\jesse\\Desktop\\DDHW2\\JSON"
 
 # Define the maximum number of tweets you want to collect (e.g., 350)
-max_tweets = 50
+max_tweets = 350
 
 def save_files(tweet_data, csv_directory, json_directory):
     # Define the CSV filename
