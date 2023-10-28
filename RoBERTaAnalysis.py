@@ -1,3 +1,14 @@
+# If you want to use this code, please install transformer, pandas, numpy and csv
+# You can either install them locally or globally and then let your project inherit from global site-package
+# but locally is always preferable
+
+# For this code, before doing analysis, please convert your date files into CSV
+# Also, be careful with column names because this is what the code reads.
+# Modify the column names at line 53, 
+# or change your column name into 'Tweet Content' on your CSV file
+
+# All you need is the directory of the file that contains the data,
+# Input them on line 24
 import csv
 import pandas as pd
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
