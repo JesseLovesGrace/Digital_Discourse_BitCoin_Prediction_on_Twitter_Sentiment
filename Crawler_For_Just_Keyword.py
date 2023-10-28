@@ -1,3 +1,32 @@
+# Twitter Tweet Collector
+# This Python script allows you to collect tweets related to a specific keyword using Twitter API v2.
+# Follow these steps to use the code:
+
+# 1. Set Up Your Environment:
+#    - Before running this code, ensure you have installed necessary dependencies such as "requests,"
+#      and "configparser." You can install these packages using pip:
+#      pip install requests configparser
+
+# 2. Customize Configuration:
+#    - Edit the 'config.ini' file to add your Twitter API v2 Bearer Token.
+#    - Replace 'config.ini' with the actual path if it's in a different directory.
+
+# 3. Define Your Search:
+#    - Set your desired keyword by updating the 'key_word' variable.
+#    - Adjust the maximum number of tweets you want to collect by modifying the 'max_tweets' variable.
+
+# 4. Specify Output Directories:
+#    - Define the directory paths where the CSV and JSON files will be saved by updating 'csv_directory' and 'json_directory'.
+#    - Make sure to use double backslashes "\\" in the directory path for proper formatting.
+
+# 5. Run the Code:
+#    - Execute this script to collect tweets based on your search query.
+#    - The collected tweets will be saved in both CSV and JSON files with filenames containing the current date and your keyword.
+
+# Customize the code by modifying variables to meet your specific needs. Enjoy collecting and analyzing Twitter data!
+
+# Note: Make sure you have access to the Twitter API and a valid Bearer Token.
+
 import os
 import requests
 import json
