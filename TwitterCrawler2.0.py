@@ -17,8 +17,6 @@
 #    - Be sure to have proper permissions to read and write files in the script's directory.
 
 
-# Example of how to execute the code:
-
 # Customize the code by modifying variables to meet your specific needs. Enjoy scraping and analyzing Twitter data!
 
 # Note: Please be mindful of Twitter's API usage policies.
