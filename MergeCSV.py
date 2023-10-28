@@ -1,3 +1,22 @@
+# CSV File Merger and Sorter
+# This Python script allows you to merge and sort multiple CSV files containing tweet data.
+# Follow these steps to use the code:
+
+# 1. Set Directory:
+#    - Specify the directory where your CSV files are located by setting the 'directory' variable.
+#    - Ensure you provide the correct path to the directory containing your CSV files.
+
+# 2. Run the Code:
+#    - Execute this script to merge and sort the CSV files.
+#    - The code will extract and merge data from multiple CSV files, sort it by 'Username' and 'Timestamp',
+#      and save the sorted data to a new CSV file.
+#    - The new CSV file will be named with the current date and labeled as '_merged_data.csv'.
+#    - The sorted data is saved in the 'Testing' directory. You can customize this path if needed.
+
+# Customize the code by modifying variables to meet your specific needs. Enjoy merging and sorting your CSV files!
+
+# Note: Make sure to provide the correct directory path and have proper permissions to read and write files.
+
 import os
 import glob
 import pandas as pd
