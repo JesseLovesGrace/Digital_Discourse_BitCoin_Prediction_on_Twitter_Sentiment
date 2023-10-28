@@ -1,3 +1,26 @@
+# Twitter Tweet Scraper
+# This Python script allows you to scrape tweets from a specific Twitter user that contain certain keywords.
+# Follow these steps to use the code:
+
+# 1. Prerequisites:
+#    - Make sure you have obtained a Twitter API v2 Bearer Token. You can subscribe to Twitter API V2 Basic level.
+#    - Store your Bearer Token in the 'config.ini' file. Replace 'your_bearer_token' with your actual token.
+
+# 2. Customize Your Search:
+#    - Specify the Twitter username of the user you want to scrape tweets from by setting the 'user_name' variable.
+#    - Define the search query keywords by setting the 'key_word' variable. This will find tweets that match both the username and the keyword.
+#    - Replace 'csv_directory' and 'json_directory' with your desired directory paths for storing CSV and JSON files.
+
+# 3. Run the Code:
+#    - Execute this script to scrape tweets based on your search criteria.
+#    - The code will save the collected tweets to both a CSV and a JSON file with filenames in the format 'date_username_keyword'.
+#    - Be sure to have proper permissions to read and write files in the specified directories.
+
+
+# Customize the code by modifying variables to meet your specific needs. Enjoy scraping and analyzing Twitter data!
+
+# Note: Please be mindful of Twitter's API usage policies.
+
 import os
 import requests
 import json
