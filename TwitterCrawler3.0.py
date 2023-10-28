@@ -1,5 +1,6 @@
 # Twitter Tweet Scraper
 # This Python script allows you to scrape tweets from a specific Twitter user that contain certain keywords.
+# The scraped data would be stored in your desired directory.
 # Follow these steps to use the code:
 
 # 1. Prerequisites:
