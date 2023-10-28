@@ -1,14 +1,32 @@
-# If you want to use this code, please install transformer, pandas, numpy and csv
-# You can either install them locally or globally and then let your project inherit from global site-package
-# but locally is always preferable
+# Sentiment Analysis with RoBERTa
+# This Python script performs sentiment analysis on text data using the RoBERTa model. Follow these steps to use the code:
 
-# For this code, before doing analysis, please convert your date files into CSV
-# Also, be careful with column names because this is what the code reads.
-# Modify the column names at line 53, 
-# or change your column name into 'Tweet Content' on your CSV file
+# 1. Dependencies:
+#    - Make sure you have the required Python packages installed:
+#      - pandas (for data handling)
+#      - transformers (for RoBERTa model and tokenizer)
+#      - scipy (for softmax function)
+#    - You can install them using pip:
+#      pip install pandas transformers scipy
 
-# All you need is the directory of the file that contains the data,
-# Input them on line 24
+# 2. Data Preparation:
+#    - Ensure your data is in CSV format.
+#    - Verify that the CSV file contains a column with text data.
+#    - If your column names are different from 'Tweet Content,' adjust line 71 accordingly.
+
+# 3. Replace File Path:
+#    - Set 'target_file' (line 42) to the path of your CSV file. Use double backslashes (\\) for file paths on Windows.
+
+# 4. Run the Code:
+#    - Execute this script to perform sentiment analysis on the data.
+#    - RoBERTa will calculate sentiment scores for each text entry.
+#    - The sentiment scores will be added to a new 'scores' column in the CSV file.
+
+# 5. Output:
+#    - The code will save the updated data back to the same CSV file.
+#    - The sentiment scores can help you analyze the sentiment of the text data.
+
+# Note: Ensure that you have proper permissions to read and write to the CSV file.
 import csv
 import pandas as pd
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
